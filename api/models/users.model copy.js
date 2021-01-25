@@ -1,9 +1,22 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-  name: {
+  usuario: {
     type: String,
-    required: [true, 'Name is required']
+    required: [true, 'email es requerido']
+  },
+  nombre: {
+    type: String,
+    required: [true, 'nombre es requerido']
+  },
+  apellidos: {
+    type: String,
+    required: [true, 'apellidos es requerido']
+  },
+  nif: {
+    type: String,
+    required: [true, 'nif es requerido']
+    //validator nif
   },
   email: {
     type: String,
@@ -21,12 +34,12 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['host', 'regular'],
+    enum: ['admin', 'ventas'],
     required: false,
-    default: 'regular'
+    default: 'ventas'
   },
-  birthDate: {
-    type: Date,
+  observaciones: {
+    type: String,
     required: false
   },
   createdAt: {
