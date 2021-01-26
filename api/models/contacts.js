@@ -2,30 +2,37 @@ const mongoose = require('mongoose')
 
 const contactsSchema = new mongoose.Schema({
   //*** COMO ENLAZO A CUENTA */
+  cuenta: {
+    type : mongoose.Schema.Types.ObjectId,
+    ref: 'accounts',
+    required: true   // no requerirlo daria flexibilidad [para cuanto tenga varios registros**]
+  }
+
+  //para imagen poner una url
 
   titulo: {
     type: String,
-    enum_ ['SR', 'SRA', 'DR', 'DRA', 'LDO'],
+    enum: ['SR', 'SRA', 'DR', 'DRA', 'LDO'],
     required: [false, 'no es requerido pero si aconsejado']
   },
 
   puesto: {
-    type; String,
-    enum_ ['JEFE SERVICIO', 'COMPRAS', 'TIC', 'RADIOLOGIA', 'CIRUGIA', 'SERV_GENERALES'],
+    type: String,
+    enum : ['JEFE SERVICIO', 'COMPRAS', 'TIC', 'RADIOLOGIA', 'CIRUGIA', 'SERV_GENERALES'],
     required: [true, 'puesto es requerido']
-  }
+  },
+
   nombre: {
     type: String,
     required: [true, 'nombre es requerido']
   },
+
   apellidos: {
-    type: String,
-    required: [false, 'apellidos es aconsejado']
+    type: String
   },
 
   telefonooficina: {
-    type: String,
-    required: [false, 'telefonooficina es aconsejado']
+    type: String
   },
   telefonomovil: {
     type: String,
@@ -44,7 +51,7 @@ const contactsSchema = new mongoose.Schema({
     required: [false, 'observaciones del cliente ']
   },
   emailcontacto: {
-    type: String,
+    type: String,  
     required: [true, 'Email is required'],
     validate: {
       validator (value) {

@@ -44,7 +44,6 @@ const accountsSchema = new mongoose.Schema({
     required: [false, 'observaciones del cliente ']
   },
 
-
   emailprincipal: {
     type: String,
     required: [true, 'Email is required'],
@@ -62,13 +61,11 @@ const accountsSchema = new mongoose.Schema({
     required: false
   },
 
-
-
   createdAt: {
     type: Number,
     default: Date.now() // Get a timestamp :)
   }
 })
-
+                              //NOMBRE QUE SE COMPARTE Y SE PUBLICA** VER 
 const accountsModel = mongoose.model('accounts', accountsSchema)
 module.exports = accountsModel
