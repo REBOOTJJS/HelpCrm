@@ -3,7 +3,6 @@ const AccountsModel = require('../models/accounts.model')
 const { handleError } = require('../utils')
 
 module.exports = {
-  //añadir los nombres de las funciones a exportar
   createAccounts,
   getAllAccounts,
   getAccountsById,
@@ -12,12 +11,20 @@ module.exports = {
   updateAccountsById,
   deleteAccountsById
 }
-
+//laas funciones es mongoosu
 function createAccounts (req, res){
   AccountsModel
   .create (
+     req.body
+     //importante que del front vengan correctos
+     //promesa el then lo bueno
+  ).then(result => {
+    //res.send('todo ok')
+    res.json (result)
+  }).catch(err =>{
+    res.json (err)
+  })
 
-  )
 }
 
 function getAllAccounts (req, res){
@@ -29,13 +36,17 @@ function getAllAccounts (req, res){
 function getAccountsById (req, res){
   AccountsModel
   .findById(req.params.id)
-  .then(response=> res.json(response))
+  .then(response => res.json(response))
   .catch((err) => handleError(err, res))
 }
 
 function getAccountsByCategory (req, res){
-  AccountsModel
-  //falta el codigo para buscar por categoria
+  console.log("consulta por categoria")  // importante esto para ver llegar VER en el terminal
+  AccountsModel  // accedemos a db a traves de este modelo
+  .find({categoria: req.params.category }) //categorias es lo que llega en la peticion
+  //   categoria :BUSCA EN EL MODELO  /  req.params.category VIENE DE LA RUTA Y COMPARA 
+  .then(response => res.json(response))
+  .catch((err) => handleError (err, res))
 }
 function getAccountsByProvince (req, res){
   AccountsModel

@@ -15,9 +15,11 @@ const  {
 
 router.post ('/', createContacts)
 router.get ('/', getAllContacts)
-router.get ('/', getContactsById)
-router.get ('/', getContactsByPosition)
-router.get ('/', getContactsByAccounts)
+router.get ('/:id', getContactsById)
+router.get ('/position/:position', getContactsByPosition)
+router.get ('/cuenta/:idcuenta', getContactsByAccounts)
 router.put ('/', updateContactsById)
 router.delete ('/', deleteContactsById)
 
+//hace publico el contenido de este fich
+module.exports = router

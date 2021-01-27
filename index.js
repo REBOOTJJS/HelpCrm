@@ -28,7 +28,7 @@ const app = express()
   .use(express.static(path.join(__dirname, 'public')))
   .use('/api', require('./api/routes'))
 
-// Init server
+// Init server  //escucha el servidor en el puerto
 const PORT = process.env.PORT || 2222
 app.listen(PORT, (err) => {
   if (err) { throw new Error(err) }

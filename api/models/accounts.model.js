@@ -11,7 +11,7 @@ const accountsSchema = new mongoose.Schema({
   },
   categoria: {
     type: String,
-    enum_ ['hospitalpublico', 'hospitalprivado' 'servicioradiologia', ],
+    enum: ['HOSPITALPUBLICO', 'HOSPITALPRIVADO', 'SERVICIORADIOLOGIA' ],
     required: [true, 'categoria es requerido']
   },
   cif: {
@@ -20,8 +20,8 @@ const accountsSchema = new mongoose.Schema({
     //validator nif
   },
   domicilio: {
-    type: String,
-    required: [false, 'domicilio es aconsejado']
+    type: String
+
   },
   localidad: {
     type: String,
@@ -40,8 +40,8 @@ const accountsSchema = new mongoose.Schema({
     required: [false, 'domicilio es aconsejado']
   },
   observaciones: {
-    type: String,
-    required: [false, 'observaciones del cliente ']
+    type: String
+
   },
 
   emailprincipal: {
@@ -56,16 +56,11 @@ const accountsSchema = new mongoose.Schema({
   },
 
 
-  observaciones: {
-    type: String,
-    required: false
-  },
-
   createdAt: {
     type: Number,
     default: Date.now() // Get a timestamp :)
   }
 })
-                              //NOMBRE QUE SE COMPARTE Y SE PUBLICA** VER 
+                              //NOMBRE QUE SE COMPARTE Y SE PUBLICA** VER
 const accountsModel = mongoose.model('accounts', accountsSchema)
 module.exports = accountsModel

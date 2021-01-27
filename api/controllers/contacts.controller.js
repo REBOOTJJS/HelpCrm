@@ -1,5 +1,5 @@
 const { response } = require('express')
-const AccountsModel = require('../models/accounts.model')
+const ContactsModel = require('../models/contacts.model')
 const { handleError } = require('../utils')
 
 module.exports = {
@@ -16,36 +16,56 @@ module.exports = {
 }
 
 function createContacts (req, res){
+  ContactsModel
+  .create(
+    req.body
+  ).then(result => {
+    res.json (result)
+  }).catch(err =>{
+    res.json(err)
+  })
+}
+/*
+function createAccounts (req, res){
   AccountsModel
   .create (
+     req.body
+     //importante que del front vengan correctos
+     //promesa el then lo bueno
+  ).then(result => {
+    //res.send('todo ok')
+    res.json (result)
+  }).catch(err =>{
+    res.json (err)
+  })
 
-  )
-}
+}*/
+
 
 function getAllContacts (req, res){
-  AccountsModel
+  ContactsModel
     .find()
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
 function getContactsById (req, res){
-  AccountsModel
+  ContactsModel
   .findById(req.params.id)
   .then(response=> res.json(response))
   .catch((err) => handleError(err, res))
 }
 
 function getContactsByPosition (req, res){
-  AccountsModel
+  ContactsModel
   //falta el codigo para buscar por puesto
 }
 function getContactsByAccounts (req, res){
-  AccountsModel
+  ContactsModel
   //falta el codigo para contactos de una cuenta todos
 }
 
 function updateContactsById (req, res) {
-  AccountsModel
+  ContactsModel
     .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
@@ -55,54 +75,11 @@ function updateContactsById (req, res) {
 }
 
 function deleteContactsById (req, res) {
-  AccountsModel
+  ContactsModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
     .catch(err => handleError(err, res))
 }
 
 
-/*
-function createPost (req, res) {
-  PostModel
-    .create({
-      title: req.body.title,
-      content: req.body.content,
-      user_id: res.locals.user._id
-    })
-    .then(response => res.json(response))
-    .catch((err) => handleError(err, res))
-}
-*/
-/*
-function getAllUsers (req, res) {
-  UserModel
-    .find()
-    .then(response => res.json(response))
-    .catch((err) => handleError(err, res))
-}
 
-function getUserById (req, res) {
-  UserModel
-    .findById(req.params.id)
-    .then(response => res.json(response))
-    .catch((err) => handleError(err, res))
-}
-
-function deleteUserById (req, res) {
-  UserModel
-    .remove({ _id: req.params.id })
-    .then(response => res.json(response))
-    .catch(err => handleError(err, res))
-}
-
-function updateUser (req, res) {
-  UserModel
-    .findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-    })
-    .then(response => res.json(response))
-    .catch((err) => handleError(err, res))
-}
-*/

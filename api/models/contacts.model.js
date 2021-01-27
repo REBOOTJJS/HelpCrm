@@ -6,14 +6,13 @@ const contactsSchema = new mongoose.Schema({
     type : mongoose.Schema.Types.ObjectId,
     ref: 'accounts',
     required: true   // no requerirlo daria flexibilidad [para cuanto tenga varios registros**]
-  }
+  },
 
   //para imagen poner una url
 
   titulo: {
     type: String,
-    enum: ['SR', 'SRA', 'DR', 'DRA', 'LDO'],
-    required: [false, 'no es requerido pero si aconsejado']
+    enum: ['SR', 'SRA', 'DR', 'DRA', 'LDO']
   },
 
   puesto: {
@@ -51,7 +50,7 @@ const contactsSchema = new mongoose.Schema({
     required: [false, 'observaciones del cliente ']
   },
   emailcontacto: {
-    type: String,  
+    type: String,
     required: [true, 'Email is required'],
     validate: {
       validator (value) {
@@ -63,9 +62,11 @@ const contactsSchema = new mongoose.Schema({
 
 creadoPor: {
   type: String,
-  enum_ ['JOAQUIN', 'ROSA', 'JERONIMO'],
-  required: [true, 'Tienes que indicar quien grabo el contacto']
-}
+  enum: ['JOAQUIN', 'ROSA', 'JERONIMO'],
+  required: [true, 'Tienes que indicar quien grabo el contacto'],
+  default: 'JOAQUIN'
+
+},
 
   createdAt: {
     type: Number,
