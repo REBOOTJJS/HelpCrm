@@ -25,21 +25,6 @@ function createContacts (req, res){
     res.json(err)
   })
 }
-/*
-function createAccounts (req, res){
-  AccountsModel
-  .create (
-     req.body
-     //importante que del front vengan correctos
-     //promesa el then lo bueno
-  ).then(result => {
-    //res.send('todo ok')
-    res.json (result)
-  }).catch(err =>{
-    res.json (err)
-  })
-
-}*/
 
 
 function getAllContacts (req, res){
@@ -48,6 +33,7 @@ function getAllContacts (req, res){
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
+
 function getContactsById (req, res){
   ContactsModel
   .findById(req.params.id)
@@ -56,9 +42,14 @@ function getContactsById (req, res){
 }
 
 function getContactsByPosition (req, res){
+  console.log("consulta por puesto")
   ContactsModel
-  //falta el codigo para buscar por puesto
+  .find({puesto: req.params.position})
+  .then(response => res.json(response))
+  .catch((err) => handleError, res)
+
 }
+
 function getContactsByAccounts (req, res){
   ContactsModel
   //falta el codigo para contactos de una cuenta todos
@@ -75,6 +66,7 @@ function updateContactsById (req, res) {
 }
 
 function deleteContactsById (req, res) {
+  console.log('estoy llegando al delete de contactos')
   ContactsModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))

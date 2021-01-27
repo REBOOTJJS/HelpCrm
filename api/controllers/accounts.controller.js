@@ -44,16 +44,21 @@ function getAccountsByCategory (req, res){
   console.log("consulta por categoria")  // importante esto para ver llegar VER en el terminal
   AccountsModel  // accedemos a db a traves de este modelo
   .find({categoria: req.params.category }) //categorias es lo que llega en la peticion
-  //   categoria :BUSCA EN EL MODELO  /  req.params.category VIENE DE LA RUTA Y COMPARA 
+  //   categoria :BUSCA EN EL MODELO  /  req.params.category VIENE DE LA RUTA Y COMPARA
   .then(response => res.json(response))
   .catch((err) => handleError (err, res))
 }
 function getAccountsByProvince (req, res){
+  console.log("consulta por categoria")
   AccountsModel
-  //falta el codigo para buscar por provincia
+  .find({provincia: req.params.province})
+  .then(response => res.json(response))
+  .catch((err) => handleError(err, res))
+
 }
 
 function updateAccountsById (req, res) {
+  console.log('estoy llegando al update de cuentas')
   AccountsModel
     .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
