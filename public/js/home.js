@@ -1,15 +1,18 @@
+  //pq npm comunica front con backend postman del frontend **
 axios
-  .get('http://localhost:3000/api/posts', { headers: { token: localStorage.getItem('token')}})
+  .get('http://localhost:3000/api/accounts', { headers: { token: localStorage.getItem('token')}})
   .then(response => {
-    const posts = document.getElementById('posts');
-    response.data.forEach(post => {
-      const newPost = document.createElement('li')
-      newPost.innerHTML = post.title;
-      posts.appendChild(newPost)
-    })
-  })
+    const cuentas = document.getElementById('cuentas');
+    response.data.forEach(cuenta => {
+      const newCuenta = document.createElement('li')
+      newCuenta.innerHTML = cuenta.nombre;
+      cuentas.appendChild(newCuenta)
 
+  })
+//ver **
   document.getElementById('logout').addEventListener("click", function() {
     localStorage.clear();
     window.location.reload()
   })
+
+

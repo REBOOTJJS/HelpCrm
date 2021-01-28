@@ -5,12 +5,14 @@ document.getElementById('signup').addEventListener("click", function(){
     password: document.getElementById('signup_password').value
   })
   .then(function (response) {
+    console.log(response)
     localStorage.setItem('token', response.data.token)
     localStorage.setItem('email', response.data.email)
     localStorage.setItem('name', response.data.name)
     goHome()
   })
   .catch(function (error) {
+    console.log(error)
     alert('User Already registered!')
   });
 })

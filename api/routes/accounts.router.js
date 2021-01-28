@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { authUser } = require('../utils')
 
-const { 
+const {
   createAccounts,
   getAllAccounts,
   getAccountsById,
@@ -21,5 +21,6 @@ router.get ('/category/:category', getAccountsByCategory)
 router.get ('/province/:province', getAccountsByProvince)
 router.put ('/:id', updateAccountsById )
 router.delete ('/:id', deleteAccountsById )
+//router.get (' ')
 
 module.exports = router

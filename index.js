@@ -25,7 +25,7 @@ const app = express()
   .use(cors())
   .use(morgan('combined'))
   .use(express.json())
-  .use(express.static(path.join(__dirname, 'public')))
+  .use(express.static(path.join(__dirname, 'public/')))
   .use('/api', require('./api/routes'))
 
 // Init server  //escucha el servidor en el puerto

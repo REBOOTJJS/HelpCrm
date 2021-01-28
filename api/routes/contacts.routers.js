@@ -18,8 +18,8 @@ router.get ('/', getAllContacts)
 router.get ('/:id', getContactsById)
 router.get ('/position/:position', getContactsByPosition)
 router.get ('/cuenta/:idcuenta', getContactsByAccounts)
-router.put ('/', updateContactsById)
-router.delete ('/', deleteContactsById)
+router.put ('/:id', updateContactsById)
+router.delete ('/:id', deleteContactsById)
 
 //hace publico el contenido de este fich
 module.exports = router

@@ -68,7 +68,8 @@ function updateContactsById (req, res) {
 function deleteContactsById (req, res) {
   console.log('estoy llegando al delete de contactos')
   ContactsModel
-    .remove({ _id: req.params.id })
+    //.remove({ _id: req.params.id })
+    .findByIdAndDelete(req.params.id)
     .then(response => res.json(response))
     .catch(err => handleError(err, res))
 }
